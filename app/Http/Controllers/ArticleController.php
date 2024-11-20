@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Routing\Controllers\HasMiddleware;
+use App\Models\Category;
 
 class ArticleController extends Controller implements HasMiddleware 
 {
@@ -18,7 +19,10 @@ class ArticleController extends Controller implements HasMiddleware
     }
     public function index()
     {
-        //
+        $articles = Article::orderBy('created_at', 'desc')->get();
+
+        return view('article.index', compact('articles'));
+
     }
 
     /**
@@ -59,7 +63,7 @@ class ArticleController extends Controller implements HasMiddleware
      */
     public function show(Article $article)
     {
-        //
+        return view('article.show', compact('article'));
     }
 
     /**
@@ -85,4 +89,10 @@ class ArticleController extends Controller implements HasMiddleware
     {
         //
     }
+
+    public function byCategory (Category $category) {
+        $articles = $category->articles()->orderBy('created_at', 'desc')->get();
+        return view('article.by-category', compact('category', 'articles'));
+        }
+        
 }

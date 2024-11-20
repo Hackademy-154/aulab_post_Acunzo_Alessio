@@ -7,6 +7,9 @@
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav ms-auto">
         @auth
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('article.create')}}">Inserisci un articolo</a>
+        </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Ciao, {{ Auth::user()->name }}

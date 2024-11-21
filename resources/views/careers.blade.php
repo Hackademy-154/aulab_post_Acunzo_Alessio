@@ -8,7 +8,9 @@
 <div class="container my-5"> 
     <div class="row"> 
         <div class="col-12 col-md-6"> 
-            <form action="#" method="" class="card p-5 shadow"> <div class="mb-3"> 
+            <form action="{{route('careers.submit')}}" method="POST" class="card p-5 shadow">
+                @csrf
+            <div class="mb-3"> 
                 <label for="role" class="form-label">Per quale ruolo ti stai candidando?</label> 
                 <select name="role" id="role" class="form-control"> 
                     <option value="" selected disabled>Seleziona il ruolo</option> <option value="admin">Amministratore</option> <option value="revisor">Revisore</option> <option value="writer">Redattore</option>

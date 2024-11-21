@@ -7,6 +7,10 @@
         </div>
     </div>
     <div class="container my-5">
+    @if (isset($user))
+    <h2 class="my-4">Articoli scritti da {{ $user->name }}</h2>
+    @endif
+
         <div class="row justify-content-evenly">
             @foreach ($articles as $article)
                 <div class="col-12 col-md-3">
@@ -18,16 +22,17 @@
                             <h5 class="card-title">{{ $article->title }}</h5>
                             <p class="card-subtitle">{{ $article->subtitle }}</p>
                             <p class="small text-muted">Categoria:
-                                <a href="{{route('article.byCategory', $article->category)}}" class="text-capitalize text-muted">{{$article->category-name }}</a>
+                            <a href="{{ route('article.byCategory', $article->category) }}" class="text-capitalize text-muted">{{ $article->category->name }}</a>
                             </p>
 
                         </div>
                         <div class="card-footer d-flex justify-content-between align-items-center">
-                            <p>
-                                Redatto il {{ $article->created_at->format('d/m/Y') }} <br>
-                                da {{ $article->user->name }}
-                            </p>
-                            <a href="{route('article.show', $article)}" class="btn btn-outline-secondary">Leggi</a>
+                        <p>Redatto il {{ $article->created_at->format('d/m/Y') }} <br>
+                            da <a href="{{ route('article.user', $article->user) }}" class="text-decoration-none">{{ $article->user->name }}</a>
+                        </p>
+
+                        <a href="{{ route('article.show', $article) }}" class="btn btn-outline-secondary">Leggi</a>
+
                         </div>
                     </div>
                 </div>

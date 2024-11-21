@@ -4,6 +4,10 @@
     <li class="nav-item">
       <a class="nav-link active" aria-current="page" href="{{route('article.index')}}">Tutti gli articoli</a>
     </li>
+    <li class="nav-item">
+  <a class="nav-link active" aria-current="page" href="{{ route('careers') }}">Lavora con noi</a>
+</li>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

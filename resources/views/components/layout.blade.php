@@ -8,6 +8,11 @@
     <title>The Aulab Post</title>
 </head>
 <body>
+@if (session('alert'))
+        <div class="alert alert-danger text-center">
+            {{ session('alert') }}
+        </div>
+    @endif
     <x-navbar />
 
     <div class="min-vh-100">

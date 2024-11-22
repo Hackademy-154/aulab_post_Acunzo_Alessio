@@ -59,3 +59,4 @@ class PublicController extends Controller implements HasMiddleware
 
         return redirect(route('homepage'))->with('message', 'Mail inviata con successo!');
 }
+}

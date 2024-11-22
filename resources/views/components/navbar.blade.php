@@ -26,6 +26,11 @@
                 <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.querySelector('#form-logout').submit();">
                   <i class="bi bi-box-arrow-right me-2"></i>Logout
                 </a>
+                @if (Auth::user()->is_admin)
+                <li>
+                  <a class="dropdown-item" href="{{route('admin.dashboard')}}">Dashboard Admin</a>
+                </li>
+                @endif
                 <form action="{{ route('logout') }}" method="POST" id="form-logout" class="d-none">
                   @csrf
                 </form>

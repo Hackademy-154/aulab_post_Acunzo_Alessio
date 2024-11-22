@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\RevisorController;
 
 
 Route::get('/', [PublicController::class, 'homepage'])->name ('homepage');
@@ -19,3 +21,26 @@ Route::get('/article/category/{category)', [ArticleController::class, 'byCategor
 Route::get('/redattore/{user}', [ArticleController::class, 'filterByUser'])->name('article.user');
 
 Route::get('/careers', [PublicController::class, 'careers'])->name('careers');
+
+Route::post('/careers/submit', [PublicController::class, 'careersSubmit'])->name('careers.submit'); 
+
+Route::middleware('admin')->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
+    Route::patch('/admin/{user}/set-admin', [AdminController::class, 'setAdmin'])->name('admin.setAdmin');
+
+    Route::patch('/admin/{user}/set-revisor', [AdminController::class, 'setRevisor'])->name('admin.setRevisor');
+
+    Route::patch('/admin/{user}/set-writer', [AdminController::class, 'setWriter'])->name('admin.setWriter');
+
+    Route::middleware('revisor')->group(function () {
+        Route::get('/revisor/dashboard', [RevisorController::class, 'dashboard'])->name('revisor.dashboard');
+
+        Route::post('/revisor/{article}/accepted', [RevisorController::class, 'acceptArticle'])->name('revisor.acceptArticle');
+
+        Route::post('/revisor/{article}/rejected', [RevisorController::class, 'rejectArticle'])->name('revisor.rejectArticle');
+
+        Route::post('/revisor/{article}/undo', [RevisorController::class, 'undoArticle'])->name('revisor.undoArticle');
+    });
+
+});

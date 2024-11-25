@@ -18,6 +18,10 @@
           <a class="nav-link" href="{{route('article.create')}}">Inserisci un articolo</a>
         </li>
           <li class="nav-item dropdown">
+            @if (Auth::user()->is_revisor)
+            <li><a class="dropdown-item" href="{{ route('revisor.dashboard')}}">Dashboard Revisor</a></li>
+            @endif
+            <i class="bi bi-person-circle me-2"></i>Profilo</a></li>
             <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Ciao, {{ Auth::user()->name }}
             </a>

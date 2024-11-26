@@ -49,4 +49,6 @@ Route::middleware('admin')->group(function () {
         Route::post('/article/store', [ArticleController::class, 'store'])->name('article.store');
     });
 
+    Route::get('/article/search', [AdminController::class, 'articleSearch'])->name('article.search');
+
 });

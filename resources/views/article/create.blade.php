@@ -57,6 +57,15 @@
             <button type="submit" class="btn btn-outline-secondary">Inserisci articolo</button>
             <a href="{{route('homepage')}}" class="text-secondary mt-2">Torna alla home</a>
                 </div>
+                <div class="mb-3">
+  <label for="tags" class="form-label">Tags</label>
+  <input type="text" name="tags" class="form-control" id="tags" value="{{old('tags')}}">
+  <span class="small text-muted fst-italic">Dividi ogni tag con una virgola</span>
+  @error('tags')
+    <span class="text-danger">{{$message}}</span>
+  @enderror
+</div>
+
             </form>
         </div>
     </div>

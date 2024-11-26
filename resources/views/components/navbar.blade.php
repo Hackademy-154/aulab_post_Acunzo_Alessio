@@ -35,6 +35,11 @@
                   <a class="dropdown-item" href="{{route('admin.dashboard')}}">Dashboard Admin</a>
                 </li>
                 @endif
+                @if (Auth::user()->is_writer)
+                <li>
+                  <a class="dropdown-item" href="{{route('writer.dashboard')}}">Dashboard Writer</a>
+                </li>
+                @endif
                 <form action="{{ route('logout') }}" method="POST" id="form-logout" class="d-none">
                   @csrf
                 </form>

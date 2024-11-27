@@ -40,7 +40,7 @@
 </form>
 </td>
 <td>
-<form action="">
+<form action="{{route('admin.deleteCategory', ['category' => $metaInfo])}}" method="POST">
 @csrf
 @method('DELETE')
 <button type="submit" class="btn btn-danger">Elimina</button>

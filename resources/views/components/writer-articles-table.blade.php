@@ -25,7 +25,7 @@
 <td>{{$article->created_at->format('d/m/Y')}}</td>
 <td>
 <a href="{{route('article.show', $article)}}" class="btn btn-secondary">Leggi</a>
-<a href="#" class="btn btn-warning text-white">Modifica</a>
+<a href="{{route('article.edit', $article)}}" class="btn btn-warning text-white">Modifica</a>
 <form action="#" method="#" class="d-inline">
     <button type="submit" class="btn btn-danger">Elimina</button>
 </form>

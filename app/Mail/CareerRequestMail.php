@@ -28,13 +28,10 @@ class CareerRequestMail extends Mailable
         );
     }
 
-    /**
-     * Get the message content definition.
-     */
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'mail.career-request-mail',
         );
     }
 

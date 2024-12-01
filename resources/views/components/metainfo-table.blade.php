@@ -11,7 +11,7 @@
 <tbody>
 @foreach ($metaInfos as $metaInfo)
 <tr>
-<th scope="row">{{$metaInfo->id)}</th>
+<th scope="row">{{$metaInfo->id)}}</th>
 <td>(($metaInfo->name}}</td>
 <td>{{count($metaInfo->articles)}}</td>
 @if ($metaType == 'tags')

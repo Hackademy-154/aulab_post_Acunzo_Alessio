@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
+use App\Models\User;
 use App\Models\Article;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Routing\Controllers\HasMiddleware;
-use App\Models\Category;
-use App\Models\Tag;
-use Illuminate\Support\Facades\Storage;
 
 
 class ArticleController extends Controller implements HasMiddleware 
@@ -17,7 +18,9 @@ class ArticleController extends Controller implements HasMiddleware
     public static function middleware()
     {
         return [
+            new Middleware('writer', except: ['index', 'show', 'byCategory', 'byUser', 'articleSearch']),
             new Middleware('auth', except: ['index', 'show', 'byCategory', 'byUser', 'articleSearch']),
+            
         ];
     }
     public function index()
@@ -138,7 +141,11 @@ class ArticleController extends Controller implements HasMiddleware
      */
     public function destroy(Article $article)
     {
-        //
+        foreach ($article->tags as $tag) {
+            $article->tags()->detach($tag);
+        }
+        $article->delete();
+        return redirect()->back()->with('message', 'Articolo cancellato con successo');
     }
 
     public function byCategory (Category $category) 

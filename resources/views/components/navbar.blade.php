@@ -14,9 +14,11 @@
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav ms-auto">
         @auth
+        @if(Auth::user()->is_writer)
         <li class="nav-item">
           <a class="nav-link" href="{{route('article.create')}}">Inserisci un articolo</a>
         </li>
+        @endif
           <li class="nav-item dropdown">
             @if (Auth::user()->is_revisor)
             <li><a class="dropdown-item" href="{{ route('revisor.dashboard')}}">Dashboard Revisor</a></li>

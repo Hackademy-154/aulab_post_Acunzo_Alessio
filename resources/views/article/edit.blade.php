@@ -9,10 +9,12 @@
 <div class="container my-5">
 <div class="row justify-content-center">
 <div class="col-12 col-md-8">
-<form action="#" method="#" class="card p-5 shadow" enctype="multipart/form-data">
+<form action="{{route('article.update', $article)}}" method="POST" class="card p-5 shadow" enctype="multipart/form-data">
+@csrf
+@method('PUT')
 <div class="mb-3">
 <label for="title" class="form-label">Titolo</label>
-<input type="text" name="title" class="form-control" id="title" value="{{Sarticle->title}}">
+<input type="text" name="title" class="form-control" id="title" value="{{$article->title}}">
 @error('title')
 <span class="text-danger">{{Smessage}}</span>
 @enderror
@@ -26,13 +28,13 @@
 </div>
 <div class="mb-3">
 <label>Immagine Attuale</label>
-<img src="{{Storage::url($article->image)}}" alt="{{Sarticle->title}}" class="w-50 d-flex">
+<img src="{{Storage::url($article->image)}}" alt="{{$article->title}}" class="w-50 d-flex">
 </div>
 <div class="mb-3">
 <label for="image" class="form-label">Nuova Immagine</label>
 <input type="file" name="image" class="form-control" id="image">
 @error('image')
-<span class="text-danger">{{Smessage}}</span>
+<span class="text-danger">{{$message}}</span>
 @enderror
 </div>
 <div class="mb-3">
@@ -44,15 +46,15 @@
 @endforeach
 </select>
 @error('category')
-<span class="text-danger">{{$message)}</span>
+<span class="text-danger">{{$message}}</span>
 @enderror
-<</div>
+</div>
 <div class="mb-3">
 <label for="tags" class="form-label">Tags</label>
 <input type="text" name="tags" class="form-control" id="tags" value="{{$article->tags->implode('name', ', ')}}">
 <span class="small text-muted fst-italic">Dividi ogni tag con una virgola</span>
 @error('tags')
-<span class="text-danger">{{$message)}</span>
+<span class="text-danger">{{$message}}</span>
 @enderror
 </div>
 <div class="mb-3">

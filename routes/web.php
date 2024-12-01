@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\PublicController;
-use App\Http\Controllers\ArticleController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\RevisorController;
+use App\Http\Controllers\PublicController;
 use App\Http\Controllers\WriterController;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\RevisorController;
 
 
 Route::get('/', [PublicController::class, 'homepage'])->name ('homepage');
@@ -15,7 +16,7 @@ Route::post('/article/store', [ArticleController::class, 'store'])->name('articl
 
 Route::get('/article/index', [ArticleController::class, 'index'])->name('article.index'); 
 
-Route::get('/article/show/{articolo}', [ArticleController::class, 'show'])->name('articolo.show');
+Route::get('/article/show/{article}', [ArticleController::class, 'show'])->name('article.show');
 
 Route::get('/article/category/{category)', [ArticleController::class, 'byCategory'])->name('article.byCategory');
 
@@ -24,6 +25,8 @@ Route::get('/redattore/{user}', [ArticleController::class, 'filterByUser'])->nam
 Route::get('/careers', [PublicController::class, 'careers'])->name('careers');
 
 Route::post('/careers/submit', [PublicController::class, 'careersSubmit'])->name('careers.submit'); 
+
+Route::get('/article/search', [ArticleController::class, 'articleSearch'])->name('article.search');
 
 Route::middleware('admin')->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
@@ -34,6 +37,16 @@ Route::middleware('admin')->group(function () {
 
     Route::patch('/admin/{user}/set-writer', [AdminController::class, 'setWriter'])->name('admin.setWriter');
 
+    Route::put('/admin/edit/tag/{tag}', [AdminController::class, 'editTag'])->name('admin.editTag');
+
+    Route::delete('/admin/delete/tag/{tag}', [AdminController::class, 'deleteTag'])->name('admin.deleteTag');
+
+    Route::put('/admin/edit/category/{category}', [AdminController::class, 'editCategory'])->name('admin.editCategory');
+
+    Route::delete('/admin/delete/category/{category}', [AdminController::class, 'deleteCategory'])->name('admin.deleteCategory');
+
+    Route::post('/admin/category/store', [AdminController::class, 'storeCategory'])->name('admin.storeCategory');
+});
     Route::middleware('revisor')->group(function () {
         Route::get('/revisor/dashboard', [RevisorController::class, 'dashboard'])->name('revisor.dashboard');
 
@@ -58,15 +71,5 @@ Route::middleware('admin')->group(function () {
         Route::delete('/article/destroy/{article}', [ArticleController::class, 'destroy'])->name('article.destroy');
     });
 
-    Route::get('/article/search', [AdminController::class, 'articleSearch'])->name('article.search');
 
-    Route::put('/admin/edit/tag/{tag}', [AdminController::class, 'editTag'])->name('admin.editTag');
 
-    Route::delete('/admin/delete/tag/{tag}', [AdminController::class, 'deleteTag'])->name('admin.deleteTag');
-
-    Route::put('/admin/edit/category/{category}', [AdminController::class, 'editCategory'])->name('admin.editCategory');
-
-    Route::delete('/admin/delete/category/{category}', [AdminController::class, 'deleteCategory'])->name('admin.deleteCategory');
-
-    Route::post('/admin/category/store', [AdminController::class, 'storeCategory'])->name('admin.storeCategory');
-});

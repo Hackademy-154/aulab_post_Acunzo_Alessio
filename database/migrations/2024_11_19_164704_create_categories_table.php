@@ -12,18 +12,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('subtitle');
-            $table->longText('body');
-            $table->string('image');
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL');
-            $table->unsignedBigInteger('category_id')->nullable();
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('SET NULL');
+            $table->string('name');
             $table->timestamps();
         });
+        $categories=['politica','economia','giochi','food&drinks','intrattenimento','tech'];
+
+            foreach($categories as $category){
+            Category::create([
+            'name'=>$category
+            ]);
+            }
     }
     
     

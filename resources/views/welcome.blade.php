@@ -25,14 +25,15 @@
                     </p>
 
                 </div>
-                <div class="card-footer d-flex justify-content-between align-items-center">
+                <div class="card-footer d-flex flex-column justify-content-between align-items-center">
+                    <div class= "d-flex justify-content-between align-items-center w-100">
                     <p>Redatto il {{ $article->created_at->format('d/m/Y') }} <br>
                     da {{ $article->user->name }}</p>
-                    <a href="{route('article.show', $article)}" class="btn btn-outline-secondary">Leggi</a>
-                </div>
-            </div>
-        </div>
-        @if ($article->category)
+                    <a href="{{route('article.show', $article)}}" class="btn btn-outline-secondary">Leggi</a>
+                    </div>
+                    <hr>
+                    <div>
+                    @if ($article->category)
         <p class="small text-muted">Categoria:
             <a href="{{route('article.byCategory', $article->category)}}" class="text-capitalize text-muted">{{$article->category->name }}</a>
         </p>
@@ -44,6 +45,10 @@
         #{{ $tag->name }}
         @endforeach
         </p>
+        </div>
+                </div>
+            </div>
+        </div>
         @endforeach
     </div>
 </div>

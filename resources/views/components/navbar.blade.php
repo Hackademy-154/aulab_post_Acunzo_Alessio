@@ -20,14 +20,14 @@
         </li>
         @endif
           <li class="nav-item dropdown">
-            @if (Auth::user()->is_revisor)
-            <li><a class="dropdown-item" href="{{ route('revisor.dashboard')}}">Dashboard Revisor</a></li>
-            @endif
             <i class="bi bi-person-circle me-2"></i>Profilo</a></li>
             <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Ciao, {{ Auth::user()->name }}
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
+            @if (Auth::user()->is_revisor)
+            <li><a class="dropdown-item" href="{{ route('revisor.dashboard')}}">Dashboard Revisor</a></li>
+            @endif
               <li>
                 <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.querySelector('#form-logout').submit();">
                   <i class="bi bi-box-arrow-right me-2"></i>Logout

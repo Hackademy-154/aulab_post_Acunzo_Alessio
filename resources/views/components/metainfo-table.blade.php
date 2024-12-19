@@ -9,10 +9,10 @@
 </tr>
 </thead>
 <tbody>
-@foreach ($metaInfos as $metaInfo)
+@foreach ($metainfos as $metaInfo)
 <tr>
-<th scope="row">{{$metaInfo->id)}}</th>
-<td>(($metaInfo->name}}</td>
+<th scope="row">{{$metaInfo->id}}</th>
+<td>{{$metaInfo->name}}</td>
 <td>{{count($metaInfo->articles)}}</td>
 @if ($metaType == 'tags')
 <td>

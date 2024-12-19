@@ -17,13 +17,13 @@ alt="Immagine dell'articolo: {{$article->title }}">
 <h5 class="card-title">{{ $article->title }}</h5>
 <p class="card-subtitle">{{ $article->subtitle }}</p>
 </div>
-<div class="card-footer d-flex justify-content-between align-items-center">
+<div class="card-footer d-flex flex-column justify-content-between align-items-center">
 <p>Redatto il {{$article->created_at->format('d/m/Y')}} <br>
 da {{$article->user->name}}</p>
 <a href="{{route('article.show', $article)}}" class="btn btn-outline-secondary">Leggi</a>
 @if ($article->category)
         <p class="small text-muted">Categoria:
-            <a href="{{route('article.byCategory', $article->category)}}" class="text-capitalize text-muted">{{$article->category-name }}</a>
+            <a href="{{route('article.byCategory', $article->category)}}" class="text-capitalize text-muted">{{$article->category->name }}</a>
         </p>
         @else
         <p class="small text-muted">Nessuna categoria</p>

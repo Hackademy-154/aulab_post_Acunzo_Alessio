@@ -1,18 +1,18 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
   <div class="container">
     <a class="navbar-brand" href="{{ url('/') }}">The Aulab Post</a>
-    <li class="nav-item">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav ms-auto">
+      <li class="nav-item">
       <a class="nav-link active" aria-current="page" href="{{route('article.index')}}">Tutti gli articoli</a>
     </li>
     <li class="nav-item">
   <a class="nav-link active" aria-current="page" href="{{ route('careers') }}">Lavora con noi</a>
 </li>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarContent">
-      <ul class="navbar-nav ms-auto">
         @auth
         @if(Auth::user()->is_writer)
         <li class="nav-item">
